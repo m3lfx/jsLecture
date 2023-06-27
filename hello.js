@@ -28,56 +28,53 @@
 //     looper(i);
 //    }
 
-   var validateDataForAge = function(data) {
+var validateDataForAge = function (data) {
     person = data();
     console.log(person);
-    if (person.age <1 || person.age > 99){
-    return true;
-    }else{
-    return false;
+    if (person.age < 1 || person.age > 99) {
+        return true;
+    } else {
+        return false;
     }
-   };
-   var errorHandlerForAge = function(error) {
+};
+var errorHandlerForAge = function (error) {
     console.log("Error while processing age");
-   };
-   function parseRequest(data,validateData,errorHandler) {
+};
+function parseRequest(data, validateData, errorHandler) {
     var error = validateData(data);
     if (!error) {
-    console.log("no errors");
+        console.log("no errors");
     } else {
-    errorHandler();
+        errorHandler();
     }
-   }
-   var generateDataForScientist = function() {
-    return {
-    name: "Albert Einstein",
-    age : Math.floor(Math.random() * (100 - 1)) + 1,
-    };
-   }
+}
+// const person = {
+//     name: 'test',
+//     age: 14,
+//     occupation: function(){
+//         return 'worker'
+//     }, 
+//     skills: ['programming', 'eating'],
+//     parents: {
+//         father: 'x',
+//         mother: 'y',
+//     }
+// }
 
-   var validateDataForAge = function(data) {
-    person = data();
-    console.log(person);
-    if (person.age <1 || person.age > 99){
-    return true;
-    }else{
-    return false;
-    }
-   };
-   var errorHandlerForAge = function(error) {
-    console.log("Error while processing age");
-   };
-   function parseRequest(data,validateData,errorHandler) {
-    var error = validateData(data);
-    if (!error) {
-    console.log("no errors");
-    } else {
-    errorHandler();
-    }
-   }
-   var generateDataForScientist = function() {
+var generateDataForScientist = function () {
     return {
-    name: "Albert Einstein",
+        name: "Albert Einstein",
+        age: Math.floor(Math.random() * (100 - 1)) + 1,
+    };
+}
+
+var generateDataForComposer = function() {
+    return {
+    name: "J S Bach",
     age : Math.floor(Math.random() * (100 - 1)) + 1,
     };
-   }
+   };
+   parseRequest(generateDataForScientist, validateDataForAge, 
+    errorHandlerForAge);
+    parseRequest(generateDataForComposer, validateDataForAge, 
+    errorHandlerForAge);
