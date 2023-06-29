@@ -475,65 +475,106 @@ const itemsFilter = items.filter(function (item) {
 
 })
 
-// const itemsContains = items.includes(function(item) {
-//     return item.sell_price < 50;
+    // const itemsContains = items.includes(function(item) {
+    //     return item.sell_price < 50;
 
-// })
-var founders = new Map();
-founders.set("facebook", "mark");
-founders.set("google", "larry");
-console.log(founders.size); // 2
-console.log(founders.get("twitter")); // undefined
-console.log(founders.has("google")); // false
-for (var [key, value] of founders) {
-    console.log(key + " founded by " + value);
+    // })
+    // var founders = new Map();
+    // founders.set("facebook", "mark");
+    // founders.set("google", "larry");
+    // console.log(founders.size); // 2
+    // console.log(founders.get("twitter")); // undefined
+    // console.log(founders.has("google")); // false
+    // for (var [key, value] of founders) {
+    //     console.log(key + " founded by " + value);
+    // }
+
+    // var mySet = new Set();
+    // mySet.add(1);
+    // mySet.add("Howdy");
+    // mySet.add("foo");
+    // console.log(mySet.has(1)); // true
+    // mySet.delete("foo");
+    // console.log(mySet.size); // 2
+    // for (let item of mySet) console.log(item);
+    // var author = {
+    //     firstname: "Douglas",
+    //     lastname: "Crockford",
+    //     book: {
+    //         title: "JavaScript- The Good Parts",
+    //         pages: "172"
+    //     },
+    //     publisher: ['pub1', 'pub2', ],
+
+    // }
+    // author.book.pages = 190;
+    // console.log(author.book.pages)
+
+    // var meetingRoom = {};
+    // meetingRoom.book = function(roomId){
+    // console.log("booked meeting room -"+roomId);
+    // }
+    // meetingRoom.book("VL")
+
+    // <!DOCTYPE html>
+    // <html lang="en">
+
+    < !DOCTYPE html>
+        <html>
+            <head>
+                <title>DOM Changes</title>
+                <meta charset='utf-8' />
+                <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+                <script>
+                    function writeIt(){
+                        $('#heading').css('font-weight', 'bold').html('jQuery');
+                    var q = document.getElementById('question');
+                    q.innerHTML = 'I Prefer jQuery!';
 }
+                </script>
+            </head>
+            <body onload='writeIt()'>
+                <p id='heading'>jQuery or JavaScript</p>
+                <p id='question'>Which method do you prefer?</p>
+            </body>
+        </html>
 
-var mySet = new Set();
-mySet.add(1);
-mySet.add("Howdy");
-mySet.add("foo");
-console.log(mySet.has(1)); // true
-mySet.delete("foo");
-console.log(mySet.size); // 2
-for (let item of mySet) console.log(item);
-var author = {
-    firstname: "Douglas",
-    lastname: "Crockford",
-    book: {
-        title: "JavaScript- The Good Parts",
-        pages: "172"
-    },
-    publisher: ['pub1', 'pub2', ],
 
-}
-author.book.pages = 190;
-console.log(author.book.pages)
-
-var meetingRoom = {};
-meetingRoom.book = function(roomId){
-console.log("booked meeting room -"+roomId);
-}
-meetingRoom.book("VL")
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script>
-        function writeIt(){
-        document.write('jQuery Version ' + $().jquery + ' loaded.');
-        }
-        </script>
+<title>DOM Objects</title>
+<meta charset='utf-8' />
+<script type='text/javascript' src='js/dom_objects.js'></script>
+<link rel='stylesheet' type='text/css' href='css/dom_objects.css'>
 </head>
-
-<body onload='writeIt()'>
-
+<body>
+<input id='textIn' type='text'/>
+<input type='button' onclick='textChange()' value='Update' /><br>
+<span class='heading'></span>
+<p id='p1'></p>
+<span class='heading'></span>
+<p id='p2'></p>
 </body>
-
 </html>
+
+function textChange(){
+var inElement = document.getElementById('textIn');
+var outElements = document.getElementsByTagName('p');
+var headingElements = document.getElementsByClassName('heading');
+for(var i=0; i<outElements.length; i++){
+var outItem = outElements[i];
+headingElements[i].innerHTML = 'Updating ' + (i+1) +
+' to ' + inElement.value;
+outItem.innerHTML = inElement.value;
+}
+}
+dom_objects.css CSS That Styles <p> Elements
+p{
+font-weight:bold;
+font-size:50px;
+margin:5px;
+color:blue;
+}
 
