@@ -80,400 +80,460 @@ function parseRequest(data, validateData, errorHandler) {
 //     errorHandlerForAge);
 
 
-let items =  [
-        {
-            "item_id": 1,
-            "title": null,
-            "description": "vans",
-            "cost_price": "200.00",
-            "sell_price": "300.00",
-            "image_path": "default.jpg",
-            "created_at": null,
-            "updated_at": null,
-            "deleted_at": null
-        },
-        {
-            "item_id": 3,
-            "title": null,
-            "description": "chuck taylot",
-            "cost_price": "100.00",
-            "sell_price": "900.00",
-            "image_path": "default.jpg",
-            "created_at": null,
-            "updated_at": null,
-            "deleted_at": null
-        },
-        {
-            "item_id": 4,
-            "title": null,
-            "description": "adidas",
-            "cost_price": "900.00",
-            "sell_price": "1000.00",
-            "image_path": "default.jpg",
-            "created_at": null,
-            "updated_at": null,
-            "deleted_at": null
-        },
-        {
-            "item_id": 6,
-            "title": "nike",
-            "description": "nike air 1 black",
-            "cost_price": "100.00",
-            "sell_price": "200.00",
-            "image_path": "",
-            "created_at": null,
-            "updated_at": null,
-            "deleted_at": null
-        },
-        {
-            "item_id": 7,
-            "title": "nike",
-            "description": "nike air jordan",
-            "cost_price": "150.00",
-            "sell_price": "200.00",
-            "image_path": "",
-            "created_at": null,
-            "updated_at": null,
-            "deleted_at": null
-        },
-        {
-            "item_id": 8,
-            "title": "bread",
-            "description": "cheese bread",
-            "cost_price": "10.00",
-            "sell_price": "20.00",
-            "image_path": "default.jpg",
-            "created_at": null,
-            "updated_at": null,
-            "deleted_at": null
-        },
-        {
-            "item_id": 9,
-            "title": "nike air jordan 1",
-            "description": "red black colorway",
-            "cost_price": "100.50",
-            "sell_price": "1200.00",
-            "image_path": "",
-            "created_at": "2023-06-12T07:43:08.000000Z",
-            "updated_at": "2023-06-12T07:43:08.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 10,
-            "title": "nike air jordan 1",
-            "description": "red black colorway",
-            "cost_price": "100.50",
-            "sell_price": "1200.00",
-            "image_path": "",
-            "created_at": "2023-06-12T07:43:22.000000Z",
-            "updated_at": "2023-06-12T07:43:22.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 11,
-            "title": "nike air jordan 1",
-            "description": "red black colorway",
-            "cost_price": "100.50",
-            "sell_price": "1200.00",
-            "image_path": "",
-            "created_at": "2023-06-12T07:44:16.000000Z",
-            "updated_at": "2023-06-12T07:44:16.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 12,
-            "title": "nike air jordan 1",
-            "description": "red black colorway",
-            "cost_price": "100.50",
-            "sell_price": "1200.00",
-            "image_path": "",
-            "created_at": "2023-06-12T07:45:26.000000Z",
-            "updated_at": "2023-06-12T07:45:26.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 13,
-            "title": "converse chuck taylor",
-            "description": "low cut white color",
-            "cost_price": "1000.00",
-            "sell_price": "2000.00",
-            "image_path": "",
-            "created_at": "2023-06-12T07:46:56.000000Z",
-            "updated_at": "2023-06-12T07:46:56.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 14,
-            "title": "converse chuck taylor",
-            "description": "low cut white color",
-            "cost_price": "1000.00",
-            "sell_price": "2000.00",
-            "image_path": "",
-            "created_at": "2023-06-12T07:47:17.000000Z",
-            "updated_at": "2023-06-12T07:47:17.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 15,
-            "title": "adidas stans smith",
-            "description": "tennis shoes white",
-            "cost_price": "5000.00",
-            "sell_price": "6000.00",
-            "image_path": "",
-            "created_at": "2023-06-12T07:48:09.000000Z",
-            "updated_at": "2023-06-12T07:48:09.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 16,
-            "title": "doc martens",
-            "description": "dms black hi cut",
-            "cost_price": "100.50",
-            "sell_price": "22000.00",
-            "image_path": "",
-            "created_at": "2023-06-12T10:35:42.000000Z",
-            "updated_at": "2023-06-12T10:35:42.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 17,
-            "title": "adidas running shoes",
-            "description": "shoes white running jogging",
-            "cost_price": "1000.00",
-            "sell_price": "2000.00",
-            "image_path": "",
-            "created_at": "2023-06-12T10:39:46.000000Z",
-            "updated_at": "2023-06-12T10:39:46.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 18,
-            "title": "secret lab",
-            "description": "gaming chair black",
-            "cost_price": "1111.00",
-            "sell_price": "1111.00",
-            "image_path": "",
-            "created_at": "2023-06-12T10:56:08.000000Z",
-            "updated_at": "2023-06-12T10:56:08.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 19,
-            "title": "cellphone",
-            "description": "vivo y29",
-            "cost_price": "111.00",
-            "sell_price": "222.00",
-            "image_path": "",
-            "created_at": "2023-06-12T11:43:02.000000Z",
-            "updated_at": "2023-06-12T11:43:02.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 20,
-            "title": "keyboard",
-            "description": "mechanical keyboard",
-            "cost_price": "1234.00",
-            "sell_price": "1111.00",
-            "image_path": "",
-            "created_at": "2023-06-12T12:03:38.000000Z",
-            "updated_at": "2023-06-12T12:03:38.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 21,
-            "title": "power bank",
-            "description": "romoss 10000mah",
-            "cost_price": "500.00",
-            "sell_price": "1000.00",
-            "image_path": "",
-            "created_at": "2023-06-12T12:14:02.000000Z",
-            "updated_at": "2023-06-12T12:14:02.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 22,
-            "title": "laptop",
-            "description": "acer laptop",
-            "cost_price": "1234.00",
-            "sell_price": "11112.50",
-            "image_path": "",
-            "created_at": "2023-06-13T02:41:04.000000Z",
-            "updated_at": "2023-06-13T02:41:04.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 23,
-            "title": "laptop",
-            "description": "acer laptop",
-            "cost_price": "1234.00",
-            "sell_price": "11112.50",
-            "image_path": "",
-            "created_at": "2023-06-13T02:41:21.000000Z",
-            "updated_at": "2023-06-13T02:41:21.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 24,
-            "title": "laptop rog",
-            "description": "gaming laptop",
-            "cost_price": "1500.00",
-            "sell_price": "13456.00",
-            "image_path": "",
-            "created_at": "2023-06-13T02:43:13.000000Z",
-            "updated_at": "2023-06-13T02:43:13.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 25,
-            "title": "chair",
-            "description": "secret lab",
-            "cost_price": "10000.00",
-            "sell_price": "9000.00",
-            "image_path": "",
-            "created_at": "2023-06-13T02:45:48.000000Z",
-            "updated_at": "2023-06-13T02:45:48.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 26,
-            "title": "mouse",
-            "description": "wireless",
-            "cost_price": "123.00",
-            "sell_price": "456.00",
-            "image_path": "",
-            "created_at": "2023-06-13T03:20:01.000000Z",
-            "updated_at": "2023-06-13T03:20:01.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 27,
-            "title": "shoes",
-            "description": "white shoes",
-            "cost_price": "900.00",
-            "sell_price": "999.00",
-            "image_path": "",
-            "created_at": "2023-06-13T03:25:15.000000Z",
-            "updated_at": "2023-06-13T03:25:15.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 28,
-            "title": "lto",
-            "description": "lto exam",
-            "cost_price": "900.00",
-            "sell_price": "1000.00",
-            "image_path": "default.jpg",
-            "created_at": "2023-06-16T06:18:18.000000Z",
-            "updated_at": "2023-06-16T06:18:18.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 29,
-            "title": "lto",
-            "description": "lto exam",
-            "cost_price": "900.00",
-            "sell_price": "1000.00",
-            "image_path": "default.jpg",
-            "created_at": "2023-06-16T06:19:09.000000Z",
-            "updated_at": "2023-06-16T06:19:09.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 30,
-            "title": "lto2",
-            "description": "lto exam",
-            "cost_price": "900.00",
-            "sell_price": "1000.00",
-            "image_path": "default.jpg",
-            "created_at": "2023-06-16T06:35:39.000000Z",
-            "updated_at": "2023-06-16T06:35:39.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 31,
-            "title": "pic2",
-            "description": "pic2",
-            "cost_price": "5000.00",
-            "sell_price": "1000.00",
-            "image_path": "default.jpg",
-            "created_at": "2023-06-16T06:36:24.000000Z",
-            "updated_at": "2023-06-16T06:36:24.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 32,
-            "title": "pic3",
-            "description": "[ic4",
-            "cost_price": "100.50",
-            "sell_price": "900.00",
-            "image_path": "default.jpg",
-            "created_at": "2023-06-16T06:38:35.000000Z",
-            "updated_at": "2023-06-16T06:38:35.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 36,
-            "title": null,
-            "description": "shoes20230626",
-            "cost_price": "100.00",
-            "sell_price": "200.00",
-            "image_path": "default.jpg",
-            "created_at": "2023-06-26T06:22:11.000000Z",
-            "updated_at": "2023-06-26T06:22:11.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 37,
-            "title": null,
-            "description": "ltos20230626",
-            "cost_price": "100.00",
-            "sell_price": "200.00",
-            "image_path": "storage\/images\/lto4.PNG",
-            "created_at": "2023-06-26T06:23:46.000000Z",
-            "updated_at": "2023-06-26T06:23:46.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 39,
-            "title": null,
-            "description": "ltos20230626",
-            "cost_price": "100.00",
-            "sell_price": "200.00",
-            "image_path": "storage\/images\/lto4.PNG",
-            "created_at": "2023-06-26T06:40:11.000000Z",
-            "updated_at": "2023-06-26T06:40:11.000000Z",
-            "deleted_at": null
-        },
-        {
-            "item_id": 40,
-            "title": null,
-            "description": "update item 40",
-            "cost_price": "100.00",
-            "sell_price": "2000.00",
-            "image_path": "storage\/images\/lto1.PNG",
-            "created_at": "2023-06-26T06:46:44.000000Z",
-            "updated_at": "2023-06-26T06:47:24.000000Z",
-            "deleted_at": null
-        }
-    ]
+let items = [
+    {
+        "item_id": 1,
+        "title": null,
+        "description": "vans",
+        "cost_price": "200.00",
+        "sell_price": "300.00",
+        "image_path": "default.jpg",
+        "created_at": null,
+        "updated_at": null,
+        "deleted_at": null
+    },
+    {
+        "item_id": 3,
+        "title": null,
+        "description": "chuck taylot",
+        "cost_price": "100.00",
+        "sell_price": "900.00",
+        "image_path": "default.jpg",
+        "created_at": null,
+        "updated_at": null,
+        "deleted_at": null
+    },
+    {
+        "item_id": 4,
+        "title": null,
+        "description": "adidas",
+        "cost_price": "900.00",
+        "sell_price": "1000.00",
+        "image_path": "default.jpg",
+        "created_at": null,
+        "updated_at": null,
+        "deleted_at": null
+    },
+    {
+        "item_id": 6,
+        "title": "nike",
+        "description": "nike air 1 black",
+        "cost_price": "100.00",
+        "sell_price": "200.00",
+        "image_path": "",
+        "created_at": null,
+        "updated_at": null,
+        "deleted_at": null
+    },
+    {
+        "item_id": 7,
+        "title": "nike",
+        "description": "nike air jordan",
+        "cost_price": "150.00",
+        "sell_price": "200.00",
+        "image_path": "",
+        "created_at": null,
+        "updated_at": null,
+        "deleted_at": null
+    },
+    {
+        "item_id": 8,
+        "title": "bread",
+        "description": "cheese bread",
+        "cost_price": "10.00",
+        "sell_price": "20.00",
+        "image_path": "default.jpg",
+        "created_at": null,
+        "updated_at": null,
+        "deleted_at": null
+    },
+    {
+        "item_id": 9,
+        "title": "nike air jordan 1",
+        "description": "red black colorway",
+        "cost_price": "100.50",
+        "sell_price": "1200.00",
+        "image_path": "",
+        "created_at": "2023-06-12T07:43:08.000000Z",
+        "updated_at": "2023-06-12T07:43:08.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 10,
+        "title": "nike air jordan 1",
+        "description": "red black colorway",
+        "cost_price": "100.50",
+        "sell_price": "1200.00",
+        "image_path": "",
+        "created_at": "2023-06-12T07:43:22.000000Z",
+        "updated_at": "2023-06-12T07:43:22.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 11,
+        "title": "nike air jordan 1",
+        "description": "red black colorway",
+        "cost_price": "100.50",
+        "sell_price": "1200.00",
+        "image_path": "",
+        "created_at": "2023-06-12T07:44:16.000000Z",
+        "updated_at": "2023-06-12T07:44:16.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 12,
+        "title": "nike air jordan 1",
+        "description": "red black colorway",
+        "cost_price": "100.50",
+        "sell_price": "1200.00",
+        "image_path": "",
+        "created_at": "2023-06-12T07:45:26.000000Z",
+        "updated_at": "2023-06-12T07:45:26.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 13,
+        "title": "converse chuck taylor",
+        "description": "low cut white color",
+        "cost_price": "1000.00",
+        "sell_price": "2000.00",
+        "image_path": "",
+        "created_at": "2023-06-12T07:46:56.000000Z",
+        "updated_at": "2023-06-12T07:46:56.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 14,
+        "title": "converse chuck taylor",
+        "description": "low cut white color",
+        "cost_price": "1000.00",
+        "sell_price": "2000.00",
+        "image_path": "",
+        "created_at": "2023-06-12T07:47:17.000000Z",
+        "updated_at": "2023-06-12T07:47:17.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 15,
+        "title": "adidas stans smith",
+        "description": "tennis shoes white",
+        "cost_price": "5000.00",
+        "sell_price": "6000.00",
+        "image_path": "",
+        "created_at": "2023-06-12T07:48:09.000000Z",
+        "updated_at": "2023-06-12T07:48:09.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 16,
+        "title": "doc martens",
+        "description": "dms black hi cut",
+        "cost_price": "100.50",
+        "sell_price": "22000.00",
+        "image_path": "",
+        "created_at": "2023-06-12T10:35:42.000000Z",
+        "updated_at": "2023-06-12T10:35:42.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 17,
+        "title": "adidas running shoes",
+        "description": "shoes white running jogging",
+        "cost_price": "1000.00",
+        "sell_price": "2000.00",
+        "image_path": "",
+        "created_at": "2023-06-12T10:39:46.000000Z",
+        "updated_at": "2023-06-12T10:39:46.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 18,
+        "title": "secret lab",
+        "description": "gaming chair black",
+        "cost_price": "1111.00",
+        "sell_price": "1111.00",
+        "image_path": "",
+        "created_at": "2023-06-12T10:56:08.000000Z",
+        "updated_at": "2023-06-12T10:56:08.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 19,
+        "title": "cellphone",
+        "description": "vivo y29",
+        "cost_price": "111.00",
+        "sell_price": "222.00",
+        "image_path": "",
+        "created_at": "2023-06-12T11:43:02.000000Z",
+        "updated_at": "2023-06-12T11:43:02.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 20,
+        "title": "keyboard",
+        "description": "mechanical keyboard",
+        "cost_price": "1234.00",
+        "sell_price": "1111.00",
+        "image_path": "",
+        "created_at": "2023-06-12T12:03:38.000000Z",
+        "updated_at": "2023-06-12T12:03:38.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 21,
+        "title": "power bank",
+        "description": "romoss 10000mah",
+        "cost_price": "500.00",
+        "sell_price": "1000.00",
+        "image_path": "",
+        "created_at": "2023-06-12T12:14:02.000000Z",
+        "updated_at": "2023-06-12T12:14:02.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 22,
+        "title": "laptop",
+        "description": "acer laptop",
+        "cost_price": "1234.00",
+        "sell_price": "11112.50",
+        "image_path": "",
+        "created_at": "2023-06-13T02:41:04.000000Z",
+        "updated_at": "2023-06-13T02:41:04.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 23,
+        "title": "laptop",
+        "description": "acer laptop",
+        "cost_price": "1234.00",
+        "sell_price": "11112.50",
+        "image_path": "",
+        "created_at": "2023-06-13T02:41:21.000000Z",
+        "updated_at": "2023-06-13T02:41:21.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 24,
+        "title": "laptop rog",
+        "description": "gaming laptop",
+        "cost_price": "1500.00",
+        "sell_price": "13456.00",
+        "image_path": "",
+        "created_at": "2023-06-13T02:43:13.000000Z",
+        "updated_at": "2023-06-13T02:43:13.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 25,
+        "title": "chair",
+        "description": "secret lab",
+        "cost_price": "10000.00",
+        "sell_price": "9000.00",
+        "image_path": "",
+        "created_at": "2023-06-13T02:45:48.000000Z",
+        "updated_at": "2023-06-13T02:45:48.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 26,
+        "title": "mouse",
+        "description": "wireless",
+        "cost_price": "123.00",
+        "sell_price": "456.00",
+        "image_path": "",
+        "created_at": "2023-06-13T03:20:01.000000Z",
+        "updated_at": "2023-06-13T03:20:01.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 27,
+        "title": "shoes",
+        "description": "white shoes",
+        "cost_price": "900.00",
+        "sell_price": "999.00",
+        "image_path": "",
+        "created_at": "2023-06-13T03:25:15.000000Z",
+        "updated_at": "2023-06-13T03:25:15.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 28,
+        "title": "lto",
+        "description": "lto exam",
+        "cost_price": "900.00",
+        "sell_price": "1000.00",
+        "image_path": "default.jpg",
+        "created_at": "2023-06-16T06:18:18.000000Z",
+        "updated_at": "2023-06-16T06:18:18.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 29,
+        "title": "lto",
+        "description": "lto exam",
+        "cost_price": "900.00",
+        "sell_price": "1000.00",
+        "image_path": "default.jpg",
+        "created_at": "2023-06-16T06:19:09.000000Z",
+        "updated_at": "2023-06-16T06:19:09.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 30,
+        "title": "lto2",
+        "description": "lto exam",
+        "cost_price": "900.00",
+        "sell_price": "1000.00",
+        "image_path": "default.jpg",
+        "created_at": "2023-06-16T06:35:39.000000Z",
+        "updated_at": "2023-06-16T06:35:39.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 31,
+        "title": "pic2",
+        "description": "pic2",
+        "cost_price": "5000.00",
+        "sell_price": "1000.00",
+        "image_path": "default.jpg",
+        "created_at": "2023-06-16T06:36:24.000000Z",
+        "updated_at": "2023-06-16T06:36:24.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 32,
+        "title": "pic3",
+        "description": "[ic4",
+        "cost_price": "100.50",
+        "sell_price": "900.00",
+        "image_path": "default.jpg",
+        "created_at": "2023-06-16T06:38:35.000000Z",
+        "updated_at": "2023-06-16T06:38:35.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 36,
+        "title": null,
+        "description": "shoes20230626",
+        "cost_price": "100.00",
+        "sell_price": "200.00",
+        "image_path": "default.jpg",
+        "created_at": "2023-06-26T06:22:11.000000Z",
+        "updated_at": "2023-06-26T06:22:11.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 37,
+        "title": null,
+        "description": "ltos20230626",
+        "cost_price": "100.00",
+        "sell_price": "200.00",
+        "image_path": "storage\/images\/lto4.PNG",
+        "created_at": "2023-06-26T06:23:46.000000Z",
+        "updated_at": "2023-06-26T06:23:46.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 39,
+        "title": null,
+        "description": "ltos20230626",
+        "cost_price": "100.00",
+        "sell_price": "200.00",
+        "image_path": "storage\/images\/lto4.PNG",
+        "created_at": "2023-06-26T06:40:11.000000Z",
+        "updated_at": "2023-06-26T06:40:11.000000Z",
+        "deleted_at": null
+    },
+    {
+        "item_id": 40,
+        "title": null,
+        "description": "update item 40",
+        "cost_price": "100.00",
+        "sell_price": "2000.00",
+        "image_path": "storage\/images\/lto1.PNG",
+        "created_at": "2023-06-26T06:46:44.000000Z",
+        "updated_at": "2023-06-26T06:47:24.000000Z",
+        "deleted_at": null
+    }
+]
 var sum = 0
-  items.forEach(function (item) {
-         sum += Number(item.cost_price)
-         
-      });
-      console.log(sum)
-    
+items.forEach(function (item, index) {
+    sum += Number(item.cost_price)
 
-    const itemsPrice = items.map(function(item) {
-        return [item.description,item.sell_price].join(" ");
-
-    })
-
-    const itemsFilter = items.filter(function(item) {
-        return item.sell_price < 500;
-
-    })
-    console.log(itemsFilter)
+});
+console.log(sum)
 
 
-    
+const itemsPrice = items.map(function (item, index) {
+    return [item.description, item.sell_price].join(" ");
+
+})
+console.log(itemsPrice)
+
+const itemsFilter = items.filter(function (item) {
+    return item.sell_price < 50;
+
+})
+
+// const itemsContains = items.includes(function(item) {
+//     return item.sell_price < 50;
+
+// })
+var founders = new Map();
+founders.set("facebook", "mark");
+founders.set("google", "larry");
+console.log(founders.size); // 2
+console.log(founders.get("twitter")); // undefined
+console.log(founders.has("google")); // false
+for (var [key, value] of founders) {
+    console.log(key + " founded by " + value);
+}
+
+var mySet = new Set();
+mySet.add(1);
+mySet.add("Howdy");
+mySet.add("foo");
+console.log(mySet.has(1)); // true
+mySet.delete("foo");
+console.log(mySet.size); // 2
+for (let item of mySet) console.log(item);
+var author = {
+    firstname: "Douglas",
+    lastname: "Crockford",
+    book: {
+        title: "JavaScript- The Good Parts",
+        pages: "172"
+    },
+    publisher: ['pub1', 'pub2', ],
+
+}
+author.book.pages = 190;
+console.log(author.book.pages)
+
+var meetingRoom = {};
+meetingRoom.book = function(roomId){
+console.log("booked meeting room -"+roomId);
+}
+meetingRoom.book("VL")
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script>
+        function writeIt(){
+        document.write('jQuery Version ' + $().jquery + ' loaded.');
+        }
+        </script>
+</head>
+
+<body onload='writeIt()'>
+
+</body>
+
+</html>
+
