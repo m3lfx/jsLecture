@@ -578,3 +578,63 @@ margin:5px;
 color:blue;
 }
 
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Selectors</title>
+<meta charset='utf-8' />
+<script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type='text/javascript' src='js/jquery_selectors.js'></script>
+<link rel='stylesheet' type='text/css' href='css/jquery_selectors.css'>
+</head>
+<body>
+<span onclick='setEven()'>Even</span>
+<span onclick='setOdd()'>Odd</span>
+<span onclick='setFirst4()'>First 4</span>
+<p class='label'>Planets</p>
+<ul>
+<li>Poseidon</li>
+<li>Ares</li>
+<li>Apollo</li>
+<li>Hermes</li>
+<li>Nike</li>
+<li>Nemesis</li>
+<li>Zeus</li>
+<li>Hades</li>
+</ul>
+</body>
+</html>
+function setEven(){
+$('li, span').css('font-weight','');
+var $evenItems = $('li:even');
+$evenItems.css('font-weight','bold');
+$('span:contains(Even)').css('font-weight','bold');
+$('.label').html('Even');
+}
+function setOdd(){
+$('li, span').css('font-weight','');
+var $oddItems = $('li:odd');
+$oddItems.css('font-weight','bold');
+$('span:contains(Odd)').css('font-weight','bold');
+$('.label').html('Odd');
+}
+function setFirst4(){
+$('li, span').css('font-weight','');
+var $first4 = $('li:lt(4)');
+$first4.css('font-weight','bold');
+$('span:contains(\'First 4\')').css('font-weight','bold');
+$('.label').html('First 4');
+}
+span{
+padding:2px;
+border:3px ridge blue;
+color:white;
+background:blue;
+cursor:pointer;
+}
+.label{
+font-size:25px;
+margin:10px;
+}
+

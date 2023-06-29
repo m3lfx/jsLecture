@@ -8,18 +8,16 @@
       integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
       crossorigin="anonymous"
     ></script>
-    <script>
-      function writeIt() {
-        $(".heading").css({"font-weight":"bold", "color":"red"}).html("jQuery");
-        var q = document.getElementById("question");
-        q.innerHTML = "I Prefer jQuery!";
-      }
-    </script>
+    <script type='text/javascript' src='js/dom_objects.js'></script>
+<link rel='stylesheet' type='text/css' href='css/dom_css.css'>
+    
   </head>
-  <body onload="writeIt()">
-    <p class="heading">jQuery or JavaScript</p>
-    <p class="heading">jQuery or JavaScript</p>
-    <p class="heading">jQuery or JavaScript</p>
-    <p id="question" >Which method do you prefer?</p>
+  <body >
+    <input id='textIn' type='text' onchange='textChange()' />
+    <input type='button' onclick='textChange()' value='Update' /><br>
+    <span class='heading'></span>
+    <p id='p1'></p>
+    <span class='heading'></span>
+    <p id='p2'></p>
   </body>
 </html>
