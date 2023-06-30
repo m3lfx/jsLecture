@@ -457,7 +457,7 @@ let items = [
     }
 ]
 var sum = 0
-items.forEach(function (item, index) {
+items.forEach(function (item) {
     sum += Number(item.cost_price)
 
 });
@@ -468,56 +468,58 @@ const itemsPrice = items.map(function (item, index) {
     return [item.description, item.sell_price].join(" ");
 
 })
-console.log(itemsPrice)
+
 
 const itemsFilter = items.filter(function (item) {
     return item.sell_price < 50;
 
 })
 
-    // const itemsContains = items.includes(function(item) {
-    //     return item.sell_price < 50;
+console.log(itemsFilter)
 
-    // })
-    // var founders = new Map();
-    // founders.set("facebook", "mark");
-    // founders.set("google", "larry");
-    // console.log(founders.size); // 2
-    // console.log(founders.get("twitter")); // undefined
-    // console.log(founders.has("google")); // false
-    // for (var [key, value] of founders) {
-    //     console.log(key + " founded by " + value);
-    // }
+   
+    var founders = new Map();
+    founders.set("facebook", "mark");
+    founders.set("google", "larry");
+    console.log(founders.size); // 2
+    console.log(founders.get("twitter")); // undefined
+    console.log(founders.has("google")); // false
+    for (var [key, value] of founders) {
+        console.log(key + " founded by " + value);
+    }
 
-    // var mySet = new Set();
-    // mySet.add(1);
-    // mySet.add("Howdy");
-    // mySet.add("foo");
-    // console.log(mySet.has(1)); // true
-    // mySet.delete("foo");
-    // console.log(mySet.size); // 2
-    // for (let item of mySet) console.log(item);
-    // var author = {
-    //     firstname: "Douglas",
-    //     lastname: "Crockford",
-    //     book: {
-    //         title: "JavaScript- The Good Parts",
-    //         pages: "172"
-    //     },
-    //     publisher: ['pub1', 'pub2', ],
+    var mySet = new Set();
+    mySet.add(1);
+    mySet.add("Howdy");
+    mySet.add("foo");
+    console.log(mySet.has(1)); // true
+    console.log(mySet)
+    mySet.delete("foo");
+    console.log(mySet)
+    console.log(mySet.size); // 2
+    for (let item of mySet) console.log(item);
+    var author = {
+        firstname: "Douglas",
+        lastname: "Crockford",
+        book: {
+            title: "JavaScript- The Good Parts",
+            pages: "172",
+        },
+        publisher: ['pub1', 'pub2', ],
 
-    // }
-    // author.book.pages = 190;
-    // console.log(author.book.pages)
+    }
+    author.book.pages = 190;
+   
+    console.log(author.book.pages)
 
-    // var meetingRoom = {};
-    // meetingRoom.book = function(roomId){
-    // console.log("booked meeting room -"+roomId);
-    // }
-    // meetingRoom.book("VL")
+    var meetingRoom = {};
+    meetingRoom.book = function(roomId){
+    console.log("booked meeting room -"+roomId);
+    }
+    meetingRoom.book("VL")
 
-    // <!DOCTYPE html>
-    // <html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
     < !DOCTYPE html>
         <html>
@@ -541,100 +543,152 @@ const itemsFilter = items.filter(function (item) {
 
 
 
+// <!DOCTYPE html>
+// <html>
+// <head>
+// <title>DOM Objects</title>
+// <meta charset='utf-8' />
+// <script type='text/javascript' src='js/dom_objects.js'></script>
+// <link rel='stylesheet' type='text/css' href='css/dom_objects.css'>
+// </head>
+// <body>
+// <input id='textIn' type='text'/>
+// <input type='button' onclick='textChange()' value='Update' /><br>
+// <span class='heading'></span>
+// <p id='p1'></p>
+// <span class='heading'></span>
+// <p id='p2'></p>
+// </body>
+// </html>
+
+// function textChange(){
+// var inElement = document.getElementById('textIn');
+// var outElements = document.getElementsByTagName('p');
+// var headingElements = document.getElementsByClassName('heading');
+// for(var i=0; i<outElements.length; i++){
+// var outItem = outElements[i];
+// headingElements[i].innerHTML = 'Updating ' + (i+1) +
+// ' to ' + inElement.value;
+// outItem.innerHTML = inElement.value;
+// }
+// }
+// dom_objects.css CSS That Styles <p> Elements
+// p{
+// font-weight:bold;
+// font-size:50px;
+// margin:5px;
+// color:blue;
+// }
+
+
+// <!DOCTYPE html>
+// <html>
+// <head>
+// <title>jQuery Selectors</title>
+// <meta charset='utf-8' />
+// <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+// <script type='text/javascript' src='js/jquery_selectors.js'></script>
+// <link rel='stylesheet' type='text/css' href='css/jquery_selectors.css'>
+// </head>
+// <body>
+// <span onclick='setEven()'>Even</span>
+// <span onclick='setOdd()'>Odd</span>
+// <span onclick='setFirst4()'>First 4</span>
+// <p class='label'>Planets</p>
+// <ul>
+// <li>Poseidon</li>
+// <li>Ares</li>
+// <li>Apollo</li>
+// <li>Hermes</li>
+// <li>Nike</li>
+// <li>Nemesis</li>
+// <li>Zeus</li>
+// <li>Hades</li>
+// </ul>
+// </body>
+// </html>
+// function setEven(){
+// $('li, span').css('font-weight','');
+// var $evenItems = $('li:even');
+// $evenItems.css('font-weight','bold');
+// $('span:contains(Even)').css('font-weight','bold');
+// $('.label').html('Even');
+// }
+// function setOdd(){
+// $('li, span').css('font-weight','');
+// var $oddItems = $('li:odd');
+// $oddItems.css('font-weight','bold');
+// $('span:contains(Odd)').css('font-weight','bold');
+// $('.label').html('Odd');
+// }
+// function setFirst4(){
+// $('li, span').css('font-weight','');
+// var $first4 = $('li:lt(4)');
+// $first4.css('font-weight','bold');
+// $('span:contains(\'First 4\')').css('font-weight','bold');
+// $('.label').html('First 4');
+// }
+// span{
+// padding:2px;
+// border:3px ridge blue;
+// color:white;
+// background:blue;
+// cursor:pointer;
+// }
+// .label{
+// font-size:25px;
+// margin:10px;
+// }
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>DOM Objects</title>
+<title>DOM Manipulation</title>
 <meta charset='utf-8' />
-<script type='text/javascript' src='js/dom_objects.js'></script>
-<link rel='stylesheet' type='text/css' href='css/dom_objects.css'>
+<script type='text/javascript' src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type='text/javascript' src='js/dom_manipulation.js'></script>
+<link rel='stylesheet' type='text/css' href='css/dom_manipulation.css'>
 </head>
 <body>
-<input id='textIn' type='text'/>
-<input type='button' onclick='textChange()' value='Update' /><br>
-<span class='heading'></span>
-<p id='p1'></p>
-<span class='heading'></span>
-<p id='p2'></p>
+<input type='button' value='.each()'>
+<input type='button' value='.map()'>
+<p>red 10</p>
+<p>orange 15</p>
+<p>yellow 20</p>
+<p>green 25</p>
+<p>blue 30</p>
+<p>indigo 35</p>
+<p>violet 40</p>
+<div></div>
 </body>
 </html>
-
-function textChange(){
-var inElement = document.getElementById('textIn');
-var outElements = document.getElementsByTagName('p');
-var headingElements = document.getElementsByClassName('heading');
-for(var i=0; i<outElements.length; i++){
-var outItem = outElements[i];
-headingElements[i].innerHTML = 'Updating ' + (i+1) +
-' to ' + inElement.value;
-outItem.innerHTML = inElement.value;
+//dom_manipulation.js
+$(document).ready(function (){
+$('input:eq(0)').click(function (){
+$('p').each(function(){
+var parts = $(this).html().split(' ');
+$(this).css({'font-size':parts[1]+'px', color:parts[0]});
+});
+});
+$('input:eq(1)').click(function (){
+var items = $('p').map(function(){
+var parts = $(this).html().split(' ');
+return {color:parts[0], size:parts[1]};
+}).get();
+for (var idx in items){
+var item = items[idx];
+var span = $('<span>' + item.color + '</span>');
+var size = item.size*5;
+span.css({'background-color':item.color, 'font-size': item.size+'px',
+width:size, height:size});
+$('div').append(span);
 }
-}
-dom_objects.css CSS That Styles <p> Elements
-p{
-font-weight:bold;
-font-size:50px;
-margin:5px;
-color:blue;
-}
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>jQuery Selectors</title>
-<meta charset='utf-8' />
-<script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
-<script type='text/javascript' src='js/jquery_selectors.js'></script>
-<link rel='stylesheet' type='text/css' href='css/jquery_selectors.css'>
-</head>
-<body>
-<span onclick='setEven()'>Even</span>
-<span onclick='setOdd()'>Odd</span>
-<span onclick='setFirst4()'>First 4</span>
-<p class='label'>Planets</p>
-<ul>
-<li>Poseidon</li>
-<li>Ares</li>
-<li>Apollo</li>
-<li>Hermes</li>
-<li>Nike</li>
-<li>Nemesis</li>
-<li>Zeus</li>
-<li>Hades</li>
-</ul>
-</body>
-</html>
-function setEven(){
-$('li, span').css('font-weight','');
-var $evenItems = $('li:even');
-$evenItems.css('font-weight','bold');
-$('span:contains(Even)').css('font-weight','bold');
-$('.label').html('Even');
-}
-function setOdd(){
-$('li, span').css('font-weight','');
-var $oddItems = $('li:odd');
-$oddItems.css('font-weight','bold');
-$('span:contains(Odd)').css('font-weight','bold');
-$('.label').html('Odd');
-}
-function setFirst4(){
-$('li, span').css('font-weight','');
-var $first4 = $('li:lt(4)');
-$first4.css('font-weight','bold');
-$('span:contains(\'First 4\')').css('font-weight','bold');
-$('.label').html('First 4');
-}
+});
+});
+//dom_manipulation.css
+p{margin:0px; padding:0px;}
 span{
-padding:2px;
-border:3px ridge blue;
-color:white;
-background:blue;
-cursor:pointer;
+display:inline-block;
+color: white;
+text-align:center;
 }
-.label{
-font-size:25px;
-margin:10px;
-}
-
