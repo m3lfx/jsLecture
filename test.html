@@ -12,8 +12,18 @@
 </head>
 
 <body >
-  <div id='div1'>Say Yes</div>
-  <div id='div2'>Say No</div>
-  <h1 id='heading'></h1>
+  <div id='container'>
+    <div id='menu' class='menu'>
+    <span id='lessons' class='menuItem'>lessons</span>
+    <span id='docs' class='menuItem'>Docs</span>
+    <span id='fade' class='menuItem'>Fade</span>
+    </div>
+    <div id='content'></div>
+    </div>
+    <div id='docMenu'>
+    <span onclick = 'setDoc("http://api.jquery.com/")'>jQuery</span>
+    <span onclick = 'setDoc("http://api.jqueryui.com/")'>jQueryUI</span>
+    <span onclick = 'setDoc("http://jquerymobile.com/demos/1.4.0/")'>jQueryMobile</span>
+    </div>
   </body>
 </html>
