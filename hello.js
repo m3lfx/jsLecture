@@ -746,3 +746,44 @@ label {
 display:inline-block;
 width:60px;
 }
+
+function clickHandler(e) {
+    console.log(e)
+    $('#' + e.data.objId).html(e.target.id + ' says ' + e.data.answer + ' at X postion: ' + e.screenX);
+}
+
+$(document).ready(function () {
+    $('#div1').on({ 'click': clickHandler },
+        { 'objId': 'heading', 'answer': 'yes' });
+    $(document).on('click', '#div2', { 'objId': 'heading', 'answer': 'no' }, clickHandler);
+});
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DOM Changes</title>
+  <meta charset='utf-8' />
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script type='text/javascript' src='js/dom_objects.js'></script>
+  <link rel='stylesheet' type='text/css' href='css/dom_css.css'>
+  
+</head>
+
+<body >
+  <div id='div1'>Say Yes</div>
+  <div id='div2'>Say No</div>
+  <h1 id='heading'></h1>
+  </body>
+</html>
+
+div{
+    border-radius:5px;
+    margin:3px;
+    padding:5px;
+    background-color:lightgrey;
+    font-weight:bold;
+    display:inline-block;
+    cursor:pointer;
+    }
