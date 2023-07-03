@@ -937,9 +937,9 @@ $(document).ready(function () {
 <body >
   <div><form id='formA'>
     <label>Time</label><br>
-    <input type='image' src='/images/day.png' />
-    <input type='image' src='/images/night.png' /><br>
-    <input name='tilte' type='text' /><br>
+    <input type='image' src='./images/sun.png' />
+    <input type='image' src='./images/moon.jpg' /><br>
+    <input name='title' type='text' /><br>
     <textarea name='comments'></textarea><br>
     <input type='radio' name='gender' value='male'>Male
     <input type='radio' name='gender' value='female'>Female<br>
