@@ -692,3 +692,57 @@ display:inline-block;
 color: white;
 text-align:center;
 }
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Traversing the DOM</title>
+<meta charset='utf-8' />
+<script type='text/javascript' src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type='text/javascript' src='js/traverse_dom.js'></script>
+<link rel='stylesheet' type='text/css' href='css/traverse_dom.css'>
+</head>
+<body>
+<p>How satisfied are you 1-5</p>
+<div>
+<label>Quality</label>
+<input type='text' onkeyup='update()'></input>
+<span></span><span></span><span></span><span></span><span></span>
+</div>
+<div><label>Taste</label>
+<input type='text' onkeyup='update()'></input>
+<span></span><span></span><span></span><span></span><span></span>
+</div>
+<div>
+<label>Server</label>
+<input type='text' onkeyup='update()'></input>
+<span></span><span></span><span></span><span></span><span></span>
+</div>
+</body>
+</html>
+JavaScript Code That Handles the Key Up Event and Uses jQuery to Manipulate the Color of the <span> Elements Based on the Input Value
+function update(){
+$('span').css('background-color','lightgrey');
+$('div').each(function(i){
+var $input = $(this).children('input:first');
+var $value = $input.val();
+var filter = 'span:lt(' + $value + ')';
+$input.siblings(filter).css('background-color','blue');
+})
+}
+//traverse_dom.css
+span{
+display:inline-block;
+height:15px;
+width:10px;
+background-color:lightgrey;
+margin:1px;
+border-radius:50%;
+}
+input {
+width:20px;
+}
+label {
+display:inline-block;
+width:60px;
+}
