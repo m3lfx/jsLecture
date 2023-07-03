@@ -920,3 +920,103 @@ $(document).ready(function () {
     $('#docs').click(setDocNav);
     $('#fade').click(fade);
 });
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DOM Changes</title>
+  <meta charset='utf-8' />
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script type='text/javascript' src='js/dom_objects.js'></script>
+  <link rel='stylesheet' type='text/css' href='css/dom_css.css'>
+  
+</head>
+
+<body >
+  <div><form id='formA'>
+    <label>Time</label><br>
+    <input type='image' src='/images/day.png' />
+    <input type='image' src='/images/night.png' /><br>
+    <input name='tilte' type='text' /><br>
+    <textarea name='comments'></textarea><br>
+    <input type='radio' name='gender' value='male'>Male
+    <input type='radio' name='gender' value='female'>Female<br>
+    <input type='checkbox' name='Registered'>Registered<br>
+    <select size=3 multiple name='count'>
+    <option>One</option><option>Two</option><option>Three</option>
+    </select><br>
+    <input id='resetB' type='button' value='Reset'></input>
+    <input id='serializeB' type='button' value='Serialize'></input>
+    </form></div>
+    <div><form id='formB'>
+    <label>Destination</label><br>
+    <input type='image' alt='No Image'></input><br>
+    <input type='text' /><br>
+    <textarea></textarea><br>
+    <input type='radio' name='gender' value='male'>Male</input>
+    <input type='radio' name='gender' value='female'>Female</input><br>
+    <input type='checkbox'>Checked</input><br>
+    <select size=3 multiple>
+    <option>One</option><option>Two</option><option>Three</option>
+    </select>
+    </form></div><br>
+    <div><label>Serialized</label><p id='serialized'></p></div>
+    <div><label>Serialized Array</label><span id='serializedA'></span></div>
+</html>
+
+$(document).ready(function () {
+    $('#formA input:text').keyup(function () {
+        $('#formB input:text').val($(this).val());
+    });
+    $('#formA textarea').keyup(function () {
+        $('#formB textarea').val($(this).val());
+    });
+    $('#formA input:radio').change(function () {
+        var radioB = $('#formB input[value=' +
+            $(this).val() + ']');
+        radioB.prop('checked', $(this).is(':checked'));
+    });
+    $('#formA input:checkbox').click(function () {
+        $('#formB input:checkbox').prop('checked',
+            $(this).prop('checked'));
+    });
+    $('#formA select').change(function () {
+        $('#formB select').val($(this).val());
+    });
+    $('#formA label').click(function () {
+        $('#formB label').html(new Date().toUTCString());
+    });
+    $('#formA input:image').click(function (e) {
+        $('#formB input:image').attr('src', $(this).attr('src'));
+        e.preventDefault();
+    });
+    $('#resetB').click(function () {
+        $('#formB').get(0).reset();
+        $('#formB input:checked').prop('checked', false);
+        $('#formB input:image').attr('src', '');
+    });
+    $('#serializeB').click(function (e) {
+        $('#serialized').html($('#formA').serialize());
+        $('#serializedA').empty();
+        var arr = $('#formA').serializeArray();
+        jQuery.each(arr, function (i, prop) {
+            $('#serializedA').append($('<p>' + prop.name + ' = ' +
+                prop.value + '</p>'));
+        });
+    });
+});
+
+input[type=image] {height:40px; margin-top:15px;}
+div{
+vertical-align:top; width:300px; height:auto;
+display:inline-block; padding:20px; margin:5px;
+border-radius:10px; border:1px solid;
+}
+label{ background-color:blue; color:white;
+border-radius:8px; padding:5px; }
+p { margin:1px; padding:2px; width: 100%;
+border-radius:8px; display:inline-block;
+word-wrap: break-word; }
+span {width:300px;}

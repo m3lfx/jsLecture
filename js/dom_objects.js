@@ -1,45 +1,41 @@
-function setHour(e) {
-    var hour = $('#lessonSelect').val();
-    $('#content p').html('Lesson ' + hour);
-}
-function setHourNav() {
-    $('#docMenu').hide();
-    $('span').removeClass('active');
-    $('#lessons').addClass('active');
-    var select = $('<select id=\"lessonSelect\"></select>');
-    select.change(setHour);
-    for (var x = 1; x < 41; x++) {
-        var option = $('<option></option');
-        option.val(x);
-        option.html('Lesson ' + x);
-        select.append(option);
-    }
-    $('#content').html('');
-    $('#content').append(select).append('<br><p></p>');
-}
-function setDocNav() {
-    $('#docMenu').show();
-    $('span').removeClass('active');
-    $('#docs').addClass('active');
-}
-function setDoc(doc) {
-    var frame = $('<iframe></iframe>');
-    frame.attr('src', doc);
-    $('#content').html(frame);
-}
-function fade() {
-    var opacity = $('#content').css('opacity');
-    if (opacity < 1) {
-        $('#content').css('opacity', 1);
-    }
-    else {
-        $('#content').css('opacity', .5);
-    }
-}
-
 $(document).ready(function () {
-    $('#docMenu').hide();
-    $('#lessons').click(setHourNav);
-    $('#docs').click(setDocNav);
-    $('#fade').click(fade);
+    $('#formA input:text').keyup(function () {
+        $('#formB input:text').val($(this).val());
+    });
+    $('#formA textarea').keyup(function () {
+        $('#formB textarea').val($(this).val());
+    });
+    $('#formA input:radio').change(function () {
+        var radioB = $('#formB input[value=' +
+            $(this).val() + ']');
+        radioB.prop('checked', $(this).is(':checked'));
+    });
+    $('#formA input:checkbox').click(function () {
+        $('#formB input:checkbox').prop('checked',
+            $(this).prop('checked'));
+    });
+    $('#formA select').change(function () {
+        $('#formB select').val($(this).val());
+    });
+    $('#formA label').click(function () {
+        $('#formB label').html(new Date().toUTCString());
+    });
+    $('#formA input:image').click(function (e) {
+        $('#formB input:image').attr('src', $(this).attr('src'));
+        e.preventDefault();
+    });
+    $('#resetB').click(function () {
+        $('#formB').get(0).reset();
+        $('#formB input:checked').prop('checked', false);
+        $('#formB input:image').attr('src', '');
+    });
+    $('#serializeB').click(function (e) {
+        $('#serialized').html($('#formA').serialize());
+        $('#serializedA').empty();
+        var arr = $('#formA').serializeArray();
+        jQuery.each(arr, function (i, prop) {
+            $('#serializedA').append($('<p>' + prop.name + ' = ' +
+                prop.value + '</p>'));
+        });
+    });
 });
