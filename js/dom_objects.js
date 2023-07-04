@@ -1,16 +1,43 @@
-function clickHandler(e, objId, num, msg) {
-    var obj = document.getElementById(objId);
-    obj.innerHTML = 'DIV ' + num + ' says ' + msg + ' at X postion: ' + e.screenX;
-}
-function yesWrapper(e) {
-    clickHandler(e, 'heading', 1, 'yes');
-    e.target.removeEventListener('click', yesWrapper);
-}
-function noWrapper(e) {
-    clickHandler(e, 'heading', 2, 'no');
-    e.target.removeEventListener('click', noWrapper);
-}
-function onloadHandler() {
-    document.getElementById('div1').addEventListener('click', yesWrapper, false);
-    document.getElementById('div2').addEventListener('click', noWrapper, false);
-}
+$(document).ready(function () {
+    $('#formA input:text').keyup(function () {
+        console.log($(this))
+        $('#formB input:text').val($(this).val());
+    });
+    $('#formA textarea').keyup(function () {
+        $('#formB textarea').val($(this).val());
+    });
+    $('#formA input:radio').change(function () {
+        var radioB = $('#formB input[value=' +
+            $(this).val() + ']');
+        radioB.prop('checked', $(this).is(':checked'));
+    });
+    $('#formA input:checkbox').click(function () {
+        $('#formB input:checkbox').prop('checked',
+            $(this).prop('checked'));
+    });
+    $('#formA select').change(function () {
+        $('#formB select').val($(this).val());
+    });
+    $('#formA label').click(function () {
+        $('#formB label').html(new Date().toUTCString());
+    });
+    $('#formA input:image').click(function (e) {
+        $('#formB input:image').attr('src', $(this).attr('src'));
+        e.preventDefault();
+    });
+    $('#resetB').click(function () {
+        $('#formB').get(0).reset();
+        $('#formB input:checked').prop('checked', false);
+        $('#formB input:image').attr('src', '');
+    });
+    $('#serializeB').click(function (e) {
+        $('#serialized').html($('#formA').serialize());
+        $('#serializedA').empty();
+        var arr = $('#formA').serializeArray();
+        console.log(arr)
+        $.each(arr, function (i, prop) {
+            $('#serializedA').append($('<p>' + prop.name + ' = ' +
+                prop.value + '</p>'));
+        });
+    });
+});
