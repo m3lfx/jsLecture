@@ -1020,3 +1020,53 @@ p { margin:1px; padding:2px; width: 100%;
 border-radius:8px; display:inline-block;
 word-wrap: break-word; }
 span {width:300px;}
+
+
+function clickHandler(e, objId, num, msg) {
+    var obj = document.getElementById(objId);
+    obj.innerHTML = 'DIV ' + num + ' says ' + msg + ' at X postion: ' + e.screenX;
+}
+function yesWrapper(e) {
+    clickHandler(e, 'heading', 1, 'yes');
+    e.target.removeEventListener('click', yesWrapper);
+}
+function noWrapper(e) {
+    clickHandler(e, 'heading', 2, 'no');
+    e.target.removeEventListener('click', noWrapper);
+}
+function onloadHandler() {
+    document.getElementById('div1').addEventListener('click', yesWrapper, false);
+    document.getElementById('div2').addEventListener('click', noWrapper, false);
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DOM Changes</title>
+  <meta charset='utf-8' />
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script type='text/javascript' src='js/dom_objects.js'></script>
+  <link rel='stylesheet' type='text/css' href='css/dom_css.css'>
+
+</head>
+
+<body>
+ 
+  <body onload='onloadHandler()'>
+    <div id='div1'>Say Yes</div>
+    <div id='div2'>Say No</div>
+    <h1 id='heading'></h1>
+    </body>
+</html>
+
+div{
+    border-radius:5px;
+    margin:3px;
+    padding:5px;
+    background-color:lightgrey;
+    font-weight:bold;
+    display:inline-block;
+    cursor:pointer;
+    }
