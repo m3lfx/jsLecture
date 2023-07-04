@@ -1161,3 +1161,8 @@ $(document).ready(function() {
       }
         });
 })
+
+public function allItems(){
+        $items = Item::all();
+        return response()->json($items);
+    }
