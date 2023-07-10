@@ -1253,3 +1253,25 @@ $('#itable tbody').on('click', 'a.deletebtn', function (e) {
             }
         });
     });
+
+$('#itemModal').on('show.bs.modal', function(e) {
+        var id = $(e.relatedTarget).attr('data-id');
+        // console.log(id);
+        $('<input>').attr({type: 'hidden', id:'itemid',name: 'item_id',value: id}).appendTo('#iform');
+        $.ajax({
+            type: "GET",
+            url: `/api/items/${id}/edit`,
+            success: function(data){
+                   // console.log(data);
+                   $("#desc").val(data.description);
+                   $("#sell").val(data.sell_price);
+                   $("#cost").val(data.cost_price);
+                   $("#image").val(data.image_path);
+                   
+              },
+             error: function(){
+              console.log('AJAX load did not work');
+              alert("error");
+              }
+          });
+    });
