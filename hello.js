@@ -1255,6 +1255,8 @@ $('#itable tbody').on('click', 'a.deletebtn', function (e) {
     });
 
 $('#itemModal').on('show.bs.modal', function(e) {
+        $("#iform").trigger("reset");
+        $('#itemid').remove()
         var id = $(e.relatedTarget).attr('data-id');
         // console.log(id);
         $('<input>').attr({type: 'hidden', id:'itemid',name: 'item_id',value: id}).appendTo('#iform');
