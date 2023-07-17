@@ -1360,3 +1360,73 @@ $(document).ready(function () {
         ],
     }); // end datatable
 })
+
+
+customer.index
+@extends('layouts.master')
+@section('content')
+<div id="items" class="container">
+  <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#itemModal">add<span
+      class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+
+  <div class="table-responsive">
+    <table id="ctable" class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>customer ID</th>
+          <th>first name</th>
+          <th>last name</th>
+          <th>address</th>
+          <th>phone</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody id="cbody">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="customerModal" role="dialog" style="display:none">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create new customer</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="iform" method="#" action="#" enctype="multipart/form-data">
+
+          <div class="form-group">
+            <label for="itemId" class="control-label">item id</label>
+            <input type="text" class="form-control" id="itemId" name="item_id" readonly>
+          </div>
+          <div class="form-group">
+            <label for="desc" class="control-label">Description</label>
+            <input type="text" class="form-control" id="desc" name="description">
+          </div>
+          <div class="form-group">
+            <label for="sell" class="control-label">sell price</label>
+            <input type="text" class="form-control " id="sell" name="sell_price">
+          </div>
+          <div class="form-group">
+            <label for="cost" class="control-label">Cost Price</label>
+            <input type="text" class="form-control " id="cost" name="cost_price">
+          </div>
+          <div class="form-group">
+            <label for="image" class="control-label">Image</label>
+            <input type="file" class="form-control" id="image" name="uploads" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" id="footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="customerSubmit" type="submit" class="btn btn-primary">Save</button>
+        <button id="customerUpdate" type="submit" class="btn btn-primary">update</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+@endsection
