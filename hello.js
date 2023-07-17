@@ -1504,3 +1504,31 @@ $('#ctable tbody').on('click', 'a.deletebtn', function (e) {
             }
         });
     });
+
+$('#ctable tbody').on('click', 'a.editBtn', function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        $('#customerModal').modal('show');
+        $('#customerSubmit, #email, #pass').hide()
+        $('#customerUpdate').show()
+
+        $.ajax({
+            type: "GET",
+            url: `http://localhost:8000/api/customers/${id}/edit`,
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                $('#title').val(data.customer_id)
+                $('#lname').val(data.lname)
+                $('#fname').val(data.fname)
+                $('#address').val(data.addressline)
+                $('#town').val(data.town)
+                $('#zip').val(data.zipcode)
+                $('#phone').val(data.phone)
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
