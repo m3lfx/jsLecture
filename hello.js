@@ -1532,3 +1532,30 @@ $('#ctable tbody').on('click', 'a.editBtn', function (e) {
             }
         });
     });
+
+public function update(Request $request, $id)
+    {
+        // dd($request);
+        // return response()->json($request);
+        // dd($request->description);
+        // dd($request);
+        $item = Item::find($id);
+        $item->description = $request->description;
+        $item->sell_price = $request->sell_price;
+        $item->cost_price = $request->cost_price;
+        $files = $request->file('uploads');
+        // dd($files);
+        $item->image_path = 'storage/images/' . $files->getClientOriginalName();
+        $item->save();
+        $data = ['status' => 'saved'];
+        Storage::put(
+            'public/images/' . $files->getClientOriginalName(),
+            file_get_contents($files)
+        );
+        $item = Item::find($id);
+        return response()->json([
+            "success" => "item created successfully.",
+            "item" => $item,
+            "status" => 200,
+        ]);
+    }
