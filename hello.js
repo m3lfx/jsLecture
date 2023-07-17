@@ -1277,3 +1277,40 @@ $('#itemModal').on('show.bs.modal', function(e) {
               }
           });
     });
+
+$("#itemSubmit").on('click', function (e) {
+        var id = $('#itemid').val();
+        var $row = $('tr td > a[data-id="' + id + '"]').closest('tr');
+        console.log($row)
+        var data = $('#iform')[0];
+        let formData = new FormData($('#iform')[0]);
+        formData.append('_method', 'PUT')
+        $.ajax({
+            type: "POST",
+            url: `/api/items/${id}`,
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                
+                $('#itemModal').modal('hide')
+                $row.remove()
+                var img = "<img src=" + data.item.image_path + " width='200px', height='200px'/>";
+                var tr = $("<tr>");
+                tr.append($("<td>").html(data.item.item_id));
+                tr.append($("<td>").html(img));
+                tr.append($("<td>").html(data.item.description));
+                tr.append($("<td>").html(data.item.sell_price));
+                tr.append($("<td>").html(data.item.cost_price));
+                tr.append("<td align='center'><a href='#' data-toggle='modal' data-target='#itemModal' id='editbtn' data-id=" + data.item.item_id + "><i class='fas fa-edit' aria-hidden='true' style='font-size:24px' ></a></i></td>");
+                tr.append("<td><a href='#'  class='deletebtn' data-id=" + data.item.item_id + "><i  class='fas fa-trash-alt' style='font-size:24px; color:red' ></a></i></td>");
+                $('#itable').prepend(tr.hide().fadeIn(5000));
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
