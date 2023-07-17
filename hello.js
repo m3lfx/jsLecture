@@ -1565,3 +1565,5 @@ Route::post('/customers',  [CustomerController::class, 'store']);
 Route::get('/customers/{id}/edit',  [CustomerController::class, 'edit']);
 Route::delete('/customers/{id}',  [CustomerController::class, 'destroy']);
 Route::put('/customers/{id}',  [CustomerController::class, 'update']);
+
+Route::view('/customer-index','customer.index');
