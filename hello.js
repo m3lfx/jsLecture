@@ -1820,3 +1820,25 @@ $(document).ready(function () {
         }
     });
 });
+
+Route::get('/dashboard/title-chart',[DashboardController::class, 'titleChart']);
+Route::get('/dashboard/sales-chart',[DashboardController::class, 'salesChart' ]);
+Route::get('/dashboard/items-chart',[DashboardController::class, 'itemsChart']);
+Route::view('/customer-index','customer.index');
+Route::view('/dashboard','dashboard.index');
+
+dashboard.index
+@extends('layouts.master')
+@section('content')
+<div>
+    <canvas id="titleChart"></canvas>
+</div>
+
+<div>
+    <canvas id="salesChart"></canvas>
+</div>
+
+<div class="chart-container" style="position: relative; height:40vh; width:80vw">
+    <canvas id="itemsChart"></canvas>
+</div>
+@endsection
