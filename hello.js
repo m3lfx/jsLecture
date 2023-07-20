@@ -1842,3 +1842,96 @@ dashboard.index
     <canvas id="itemsChart"></canvas>
 </div>
 @endsection
+
+@extends('layouts.master')
+@section('content')
+<div id="items" class="container">
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#customerModal">add<span
+      class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+
+  <div class="table-responsive">
+    <table id="ctable" class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Image</th>
+          
+          <th>customer ID</th>
+          <th>first name</th>
+          <th>last name</th>
+          <th>address</th>
+          <th>phone</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody id="cbody">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="customerModal" role="dialog" style="display:none">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create new customer</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="cform" method="#" action="#" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="customerId" class="control-label">customer id</label>
+                <input type="text" class="form-control" id="customerId" name="customer_id" readonly>
+              </div>
+          <div class="form-group">
+            <label for="desc" class="control-label">title</label>
+            <input type="text" class="form-control" id="title" name="title">
+          </div>
+          <div class="form-group">
+            <label for="lname" class="control-label">last name</label>
+            <input type="text" class="form-control " id="lname" name="lname">
+          </div>
+          <div class="form-group">
+            <label for="cost" class="control-label">first name</label>
+            <input type="text" class="form-control " id="fname" name="fname">
+          </div>
+          <div class="form-group">
+            <label for="address" class="control-label">address</label>
+            <input type="text" class="form-control " id="address" name="addressline">
+          </div>
+          <div class="form-group">
+            <label for="town" class="control-label">town</label>
+            <input type="text" class="form-control " id="town" name="town">
+          </div>
+          <div class="form-group">
+            <label for="zipcode" class="control-label">zipcode</label>
+            <input type="text" class="form-control " id="zipcode" name="zipcode">
+          </div>
+          <div class="form-group">
+            <label for="phone" class="control-label">phone</label>
+            <input type="text" class="form-control " id="phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="email" class="control-label">email</label>
+            <input type="text" class="form-control " id="email" name="email">
+          </div>
+          <div class="form-group">
+            <label for="pass" class="control-label">password</label>
+            <input type="password" class="form-control " id="pass" name="password">
+          </div>
+          <div class="form-group">
+            <label for="image" class="control-label">Image</label>
+            <input type="file" class="form-control" id="image" name="uploads" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" id="footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="customerSubmit" type="submit" class="btn btn-primary">Save</button>
+        <button id="customerUpdate" type="submit" class="btn btn-primary">update</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+@endsection
