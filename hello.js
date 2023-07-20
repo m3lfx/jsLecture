@@ -1963,3 +1963,40 @@ public function update(Request $request, $id)
         ]);
 
     }
+
+$("#customerUpdate").on('click', function (e) {
+        e.preventDefault();
+        var id = $('#customerId').val()
+        console.log(id);
+        var table = $('#ctable').DataTable();
+        var cRow = $("tr td:eq(" + id + ")").closest('tr');
+        var data = $('#cform')[0];
+        let formData = new FormData(data);
+        // var formData = $("#cform").serialize();
+        console.log(formData);
+        formData.append('_method', 'PUT')
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+        $.ajax({
+            type: "POST",
+            url: `http://localhost:8000/api/customers/${id}`,
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                $('#customerModal').modal("hide");
+                // cRow.fadeOut(4000, function () {
+                // table.row(cRow).data(data).invalidate().draw(false);
+                //   });
+                table.ajax.reload(false)
+
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
