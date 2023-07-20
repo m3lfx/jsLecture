@@ -1935,3 +1935,31 @@ dashboard.index
   </div>
 </div>
 @endsection
+
+public function update(Request $request, $id)
+    {
+        
+        $customer = Customer::find($id);
+        $customer->title = $request->title;
+        $customer->lname = $request->lname;
+        $customer->fname = $request->fname;
+        $customer->addressline = $request->addressline;
+        $customer->town = $request->town;
+        $customer->zipcode = $request->zipcode;
+        $customer->phone = $request->phone;
+        $files = $request->file('uploads');
+        $customer->image_path = 'storage/images/' . $files->getClientOriginalName();
+        $customer->save();
+        $data = ['status' => 'saved'];
+        Storage::put(
+            'public/images/' . $files->getClientOriginalName(),
+            file_get_contents($files)
+        );
+
+        return response()->json([
+            "success" => "customer created successfully.",
+            "customer" => $customer,
+            "status" => 200
+        ]);
+
+    }
