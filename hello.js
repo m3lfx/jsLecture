@@ -2000,3 +2000,364 @@ $("#customerUpdate").on('click', function (e) {
             }
         });
     });
+
+    shop.cssheader {
+  height: 100px;
+}
+
+h1 {
+  float: left;
+  margin: 0;
+}
+
+h2 {
+  margin: 0 0 50px;
+}
+
+#cart-container {
+  float: right;
+  width: 210px;
+  position: relative;
+}
+
+#itemCount {
+  position: absolute;
+  display: none;
+  top: -10px;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  text-align: center;
+}
+
+nav {
+  margin-bottom: 30px;
+}
+
+nav ul {
+  list-style: none;
+  overflow: auto;
+  width: 100%;
+  background: #444444;
+}
+
+nav ul li {
+  float: left;
+  padding: 5px 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li:hover {
+  color: #444444;
+  background: #cccccc;
+}
+
+nav ul li:hover a {
+  color: #444444;
+}
+
+img {
+  width: 100%;
+}
+
+.item {
+  width: 31%;
+  float: left;
+  margin: 1%;
+}
+
+.itemText p {
+  margin-bottom: 20px;
+}
+
+.price-container {
+  margin-top: 20px;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+#shoppingCart {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+#cartItemsContainer {
+  position: relative;
+  width: 600px;
+  left: 50%;
+  top: 150px;
+  margin-left: -300px;
+  padding: 40px;
+  box-shadow: 0 0 10px black;
+  background: #e9e9e9;
+  overflow: auto;
+}
+
+#cartItemsContainer i {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#cartItemsContainer .itemDetails {
+  overflow: auto;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+#cartItemsContainer .itemImage {
+  float: left;
+  width: 260px;
+  padding: 0 40px;
+}
+
+#cartItemsContainer .itemText {
+  float: right;
+  width: 260px;
+  padding: 0 40px;
+}
+
+#cartItemsContainer .itemText .price-container {
+  margin-top: 0;
+}
+
+.removeItem {
+  margin-left: 40px;
+}
+
+shop.index
+@extends('layouts.shop')
+
+@section('body')
+    <h1>Your Shopping Cart</h1>
+    <div id="cart-container">
+        <div id="cart">
+            <i class="fa fa-shopping-cart fa-2x openCloseCart" aria-hidden="true"></i>
+            <button id="emptyCart">Empty Cart</button>
+        </div>
+        <span id="itemCount"></span>
+    </div>
+    <div id="shoppingCart">
+        <div id="cartItemsContainer">
+            <h2>Items in your cart</h2>
+            
+            <i class="fas fa-times-circle"></i>
+            
+            <div id="cartItems">
+
+            </div>
+            <button class="btn btn-primary" id="checkout">Checkout</button>;
+            <button class="btn btn-primary" id="close">Close</button>;
+            <span id="cartTotal"></span>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Shopping Cart</a></li>
+        </ul>
+    </nav>
+    <div class="container container-fluid" id="items">
+
+    </div>
+@endsection
+
+
+shop.blade
+<!doctype html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <link href="{{asset('css/shop.css')}}" rel="stylesheet"> 
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+ <title>shop</title>
+ </head>
+ <body>
+ @yield('body')
+ @include('layouts.scripts')
+ </body>
+ </html>
+
+ itemController
+ public function postCheckout(Request $request)
+    {
+        
+        $items = json_decode($request->getContent(), true);
+      
+        try {
+            DB::beginTransaction();
+            $order = new Order();
+            $order->date_placed = Carbon::now();
+            $customer = Customer::find(3);
+            $customer->orders()->save($order);
+           
+            foreach ($items as $item) {
+                $id = $item['item_id'];
+                $order
+                    ->items()
+                    ->attach($order->orderinfo_id, [
+                        'quantity' => $item['quantity'],
+                        'item_id' => $id,
+                    ]);
+               
+                $stock = Stock::find($id);
+                $stock->quantity = $stock->quantity - $item['quantity'];
+                $stock->save();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'status' => 'Order failed',
+                'code' => 409,
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        DB::commit();
+        return response()->json([
+            'status' => 'Order Success',
+            'code' => 200,
+            'order id' => $order->orderinfo_id,
+        ]);
+    } //end postcheckout
+
+shop.js
+var itemCount = 0;
+var priceTotal = 0;
+var quantity = 0;
+var clone = "";
+
+$(document).ready(function () {
+	$.ajax({
+		type: "GET",
+		url: "/api/items",
+		dataType: 'json',
+		success: function (data) {
+			console.log(data);
+			$.each(data, function (key, value) {
+				// console.log(key);
+				id = value.item_id;
+				var item = "<div class='item'><div class='itemDetails'><div class='itemImage'><img src=" + value.image_path + " width='200px', height='200px'/></div><div class='itemText'><p class='price-container'>Price: Php <span class='price'>" + value.sell_price + "</span></p><p>" + value.description + "</p></div><input type='number' class='qty' name='quantity' min='1' max='5'><p class='itemId'>" + value.item_id + "</p>      </div><button type='button' class='btn btn-primary add' >Add to cart</button></div>";
+				$("#items").append(item);
+
+			});
+
+		},
+		error: function () {
+			console.log('AJAX load did not work');
+			alert("error");
+		}
+	});
+	$("#items").on('click', '.add', function () {
+		itemCount++;
+		$('#itemCount').text(itemCount).css('display', 'block');
+		clone = $(this).siblings().clone().appendTo('#cartItems')
+			.append('<button class="removeItem">Remove Item</button>');
+		// Calculate Total Price
+		var price = parseInt($(this).siblings().find('.price').text());
+		priceTotal += price;
+		$('#cartTotal').text("Total: php" + priceTotal);
+	});
+
+	$('.openCloseCart').click(function () {
+		$('#shoppingCart').show();
+	});
+
+	$('#close').click(function () {
+		$('#shoppingCart').hide();
+	});
+
+	$('#shoppingCart').on('click', '.removeItem', function () {
+		$(this).parent().remove();
+		itemCount--;
+		$('#itemCount').text(itemCount);
+
+		// Remove Cost of Deleted Item from Total Price
+		var price = parseInt($(this).siblings().find('.price').text());
+		priceTotal -= price;
+		$('#cartTotal').text("Total: php" + priceTotal);
+
+		if (itemCount == 0) {
+			$('#itemCount').css('display', 'none');
+		}
+	});
+
+	$('#emptyCart').click(function () {
+		itemCount = 0;
+		priceTotal = 0;
+
+		$('#itemCount').css('display', 'none');
+		$('#cartItems').text('');
+		$('#cartTotal').text("Total: php" + priceTotal);
+	});
+
+	$('#checkout').click(function () {
+		itemCount = 0;
+		priceTotal = 0;
+	
+		let items = new Array();
+		$("#cartItems").find(".itemDetails").each(function (i, element) {
+			let itemid = 0;
+			let qty = 0;
+			qty = parseInt($(element).find($(".qty")).val());
+			itemid = parseInt($(element).find($(".itemId")).html());
+			items.push(
+				{
+					"item_id": itemid,
+					"quantity": qty
+				}
+			);
+		});
+		console.log(JSON.stringify(items));
+		var data = JSON.stringify(items);
+
+		$.ajax({
+			type: "POST",
+			url: "/api/items/checkout",
+			data: data,
+			headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+			dataType: "json",
+			processData: false,
+			contentType: 'application/json; charset=utf-8',
+			success: function (data) {
+				console.log(data);
+				alert(data.status);
+			},
+			error: function (error) {
+				alert(data.status);
+			}
+		});
+		$('#itemCount').css('display', 'none');
+		$('#cartItems').text('');
+		$('#cartTotal').text("Total: php" + priceTotal);
+		$('#shoppingCart').hide();
+
+		// console.log(clone.find(".itemDetails"));
+
+	});
+
+});//end ready
+
+
+Route::post('/items/checkout',[ItemController::class, 'postCheckout'])->name( 'postCheckout');
+Route::view('/shop', 'shop.index');
+
